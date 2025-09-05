@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware'=>['api','checkPassword','changeLanguage'],'namespace'=>'Api'],function(){
 
     Route::post('getCategories',[CategoriesController::class, 'index']);
+     Route::post('getCategoryByID',[CategoriesController::class, 'showCatgeory']);
  
     
 
