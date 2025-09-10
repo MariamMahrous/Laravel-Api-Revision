@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AuthController;
  use App\Http\Controllers\Api\CategoriesController;
 
 /*
@@ -20,9 +21,14 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::group(['middleware'=>['api','checkPassword','changeLanguage'],'namespace'=>'Api'],function(){
+     Route::group(['prefix'=>'admin'],function(){
+     Route::post('login',[AuthController::class,"login"]);
+     });
 
     Route::post('getCategories',[CategoriesController::class, 'index']);
      Route::post('getCategoryByID',[CategoriesController::class, 'showCatgeory']);
+
+    
  
     
 
