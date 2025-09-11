@@ -21,14 +21,14 @@ use App\Http\Controllers\Api\AuthController;
 // });
 
 Route::group(['middleware'=>['api','checkPassword','changeLanguage'],'namespace'=>'Api'],function(){
-     Route::group(['prefix'=>'admin'],function(){
-     Route::post('login',[AuthController::class,"login"]);
-     });
-
+    
     Route::post('getCategories',[CategoriesController::class, 'index']);
      Route::post('getCategoryByID',[CategoriesController::class, 'showCatgeory']);
 
-    
+     Route::group(['prefix'=>'admin'],function(){
+     Route::post('login',[AuthController::class,"login"]);
+     Route::post('logout',[AuthController::class,"logout"])->middleware('auth.guard:admin-api');
+     });
  
     
 
