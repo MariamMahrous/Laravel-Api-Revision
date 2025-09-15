@@ -27,7 +27,7 @@ Route::group(['middleware'=>['api','checkPassword','changeLanguage'],'namespace'
 
      Route::group(['prefix'=>'admin'],function(){
      Route::post('login',[AuthController::class,"login"]);
-     Route::post('logout',[AuthController::class,"logout"])->middleware('auth.guard:admin-api');
+     Route::post('logout',[AuthController::class,"logout"])->middleware('auth.guard:admin_api');
      });
  
     
