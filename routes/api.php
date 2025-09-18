@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
  use App\Http\Controllers\Api\CategoriesController;
+use App\Http\Controllers\Api\User\AuthController as UserAuthController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,18 @@ Route::group(['middleware'=>['api','checkPassword','changeLanguage'],'namespace'
      Route::group(['prefix'=>'admin'],function(){
      Route::post('login',[AuthController::class,"login"]);
      Route::post('logout',[AuthController::class,"logout"])->middleware('auth.guard:admin_api');
+     });
+
+    Route::prefix('user')->group(function () {
+    Route::post('login', [UserAuthController::class, 'userLogin']);
+     Route::post('logout',[UserAuthController::class,"logout"])->middleware('auth.guard:user_api');
+});
+      Route::group(['prefix'=>'user' , 'middleware'=>'auth.guard:user_api','namespace'=>'User'],function(){
+        
+        Route::post('profile',function(){
+            return "Only User Can Uthenticate";
+        });
+
      });
  
     

@@ -54,6 +54,11 @@ return [
         'provider' => 'admins',
        
                    ],
+        'user_api' => [
+        'driver' => 'jwt',
+        'provider' => 'users',
+       
+                   ],
 
 
     ],
